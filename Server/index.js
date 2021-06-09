@@ -11,5 +11,12 @@ const app = express()
 
 
 app.listen(process.env.PORT, () => {
-    console.log(`Server ${process.env.PORT}. portta yayında!`);
+    mongoose
+        .connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useFindAndModify: true,
+        })
+        .then(() => console.log('connected to db'))
+        .catch((err) => console.log(err))
 })
