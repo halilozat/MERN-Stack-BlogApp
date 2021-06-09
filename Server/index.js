@@ -3,11 +3,16 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
+import memoryRouter from './routers/memoryRouter.js'
 
 dotenv.config()
 
 const app = express()
+//express'in json verileri parse edebilmesini sağlar.
+app.use(express.json({limit:'30mb'}))
 
+//localhost:5000/memories
+app.use('/memories', memoryRouter)
 
 
 app.listen(process.env.PORT, () => {
