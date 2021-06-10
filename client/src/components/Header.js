@@ -4,9 +4,6 @@ import {
   Navbar,
   Nav,
   Button,
-  Form,
-  FormControl,
-  NavDropdown,
 } from 'react-bootstrap'
 
 import { LinkContainer } from 'react-router-bootstrap'

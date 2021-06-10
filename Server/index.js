@@ -10,6 +10,7 @@ dotenv.config()
 const app = express()
 //express'in json verileri parse edebilmesini sağlar.
 app.use(express.json({limit:'30mb'}))
+app.use(cors())
 
 //localhost:5000/memories
 app.use('/memories', memoryRouter)
