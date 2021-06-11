@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment'
-
+import { deleteMemory } from '../axios/index.js'
 import { MdModeEdit, MdDelete } from 'react-icons/md'
 
 import { Card } from 'react-bootstrap'
@@ -22,11 +22,19 @@ const Memory = ({memory}) => {
         style={{ display: 'flex', justifyContent: 'space-between' }}
         className=' pb-0'
       >
-        <LinkContainer to='/' style={{ cursor: 'pointer' }}>
+        <LinkContainer
+          to={`/update/${memory._id}`}
+          style={{ cursor: 'pointer' }}
+        >
           <MdModeEdit size={25} color='blue' />
         </LinkContainer>
 
-        <MdDelete color='red' style={{ cursor: 'pointer' }} size={25} />
+        <MdDelete
+          color='red'
+          style={{ cursor: 'pointer' }}
+          size={25}
+          onClick={() => deleteMemory(memory._id)}
+        />
       </Card.Footer>
     </Card>
     )
