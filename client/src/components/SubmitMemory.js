@@ -6,6 +6,7 @@ import { Form, Button } from 'react-bootstrap'
 //*as = herşeyi import et
 import * as api from '../axios/index.js'
 
+import { useHistory } from 'react-router-dom'
 
 const SubmitMemory = () => {
     const [memoryData, setMemoryData] = useState({
@@ -15,6 +16,8 @@ const SubmitMemory = () => {
         image: '',
     })
 
+    const history = useHistory()
+
     return (
         <>
             <Form
@@ -22,6 +25,8 @@ const SubmitMemory = () => {
                     e.preventDefault() //butona basınca sayfanın kendini yenilemesini engeller
 
                     api.createMemory(memoryData)
+
+                    history.push('/')
                 }}
             >
                 <Form.Group >
