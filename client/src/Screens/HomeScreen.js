@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import { fetchMemories } from '../axios/index.js'
 import { Spinner, Row, Col } from 'react-bootstrap'
 import Memory from '../components/Memory'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchMemories } from '../actions/memoryActions'
 
 const HomeScreen = () => {
-
-    const [memories, setMemories] = useState([])
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        const getMemories = async () => {
-            const { data } = await fetchMemories()
-            setMemories(data)
-        }
-        getMemories()
-    }, [])
+        dispatch(fetchMemories())
+    }, [dispatch])
+    
+    const memories = useSelector((state) => state.memories)
 
 
     return (
