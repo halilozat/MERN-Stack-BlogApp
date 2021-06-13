@@ -6,12 +6,14 @@ import { fetchMemories } from '../actions/memoryActions'
 
 const HomeScreen = () => {
     const dispatch = useDispatch()
+    const memories = useSelector((state) => state.memories)
 
     useEffect(() => {
-        dispatch(fetchMemories())
+        if (!memories[0]) {
+            dispatch(fetchMemories())
+        }
     }, [dispatch])
-    
-    const memories = useSelector((state) => state.memories)
+
 
 
     return (

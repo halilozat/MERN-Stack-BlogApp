@@ -3,9 +3,8 @@ import ReactFileBase64 from 'react-file-base64'
 
 import { Form, Button } from 'react-bootstrap'
 
-//*as = herşeyi import et
-import * as api from '../axios/index.js'
-
+import { useDispatch } from 'react-redux'
+import { createMemory } from '../actions/memoryActions'
 import { useHistory } from 'react-router-dom'
 
 const SubmitMemory = () => {
@@ -17,6 +16,7 @@ const SubmitMemory = () => {
     })
 
     const history = useHistory()
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -24,7 +24,7 @@ const SubmitMemory = () => {
                 onSubmit={(e) => {
                     e.preventDefault() //butona basınca sayfanın kendini yenilemesini engeller
 
-                    api.createMemory(memoryData)
+                    dispatch(createMemory(memoryData))
 
                     history.push('/')
                 }}

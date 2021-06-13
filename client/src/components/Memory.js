@@ -1,14 +1,15 @@
 import React from 'react'
 import moment from 'moment'
-import { deleteMemory } from '../axios/index.js'
+import { deleteMemory } from '../actions/memoryActions'
 import { MdModeEdit, MdDelete } from 'react-icons/md'
-
+import { useDispatch } from 'react-redux'
 import { Card } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const Memory = ({memory}) => {
-    return (
-        <Card className='rounded py-3 my-3'>
+const Memory = ({ memory }) => {
+  const dispatch = useDispatch()
+  return (
+    <Card className='rounded py-3 my-3'>
       <Card.Img variant='top' src={memory.image} />
       <Card.Body>
         <Card.Title style={{ color: 'darkblue' }}>{memory.title}</Card.Title>
@@ -33,11 +34,13 @@ const Memory = ({memory}) => {
           color='red'
           style={{ cursor: 'pointer' }}
           size={25}
-          onClick={() => deleteMemory(memory._id)}
+          onClick={() => {
+            dispatch(deleteMemory(memory._id))
+          }}
         />
       </Card.Footer>
     </Card>
-    )
+  )
 }
 
 export default Memory
