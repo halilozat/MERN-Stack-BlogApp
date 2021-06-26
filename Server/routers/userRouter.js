@@ -48,9 +48,30 @@ router.post('/signup', async (req, res) => {
         })
 
         res.status(200).json({ user, accessToken }) //user ve accesToken'i frontend'e gönderiyoruz.
-        
+
     } catch (error) {
         console.log(error)
+    }
+})
+
+router.get('/logout/:id', async (req, res) => {
+    try {
+
+        const { id } = req.params
+        await tokenModel.findOneAndUpdate(
+            {
+                userId: id,
+            },
+            {
+                refreshToken: null
+            },
+            {
+                new: true
+            }
+        )
+        res.status(200).json({ message: "Çıkış Yapıldı!" })
+    } catch (error) {
+        res.status(500).json(error)
     }
 })
 
